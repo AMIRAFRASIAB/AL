@@ -71,6 +71,9 @@ typedef struct {
 
 bool al_createJob (al_void_Fn const callback, uint32_t tick_ms);
 void al_doTheJob (void);
+void al_tickIncrement (void);
+uint32_t al_getTick (void);
+bool vio_init (const vio_t* const PVIO, bool lock);
 
 #ifdef __cplusplus
   };
