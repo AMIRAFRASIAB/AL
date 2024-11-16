@@ -29,34 +29,34 @@
 #include <stdbool.h>
 
 
-#define __VIO_MAKE_OUTPUT_API_TOGGLE(vio)  void __CONCAT(vio, _toggle) (void) {          \
-                                             LL_GPIO_TogglePin(LL_VIO(vio));             \
-                                           }                                             \
-
-#define __VIO_MAKE_OUTPUT_API_UP(vio)      void __CONCAT(vio, _off) (void) {             \
-                                             LL_GPIO_SetOutputPin(LL_VIO(vio));          \
-                                           }                                             \
-                                           void __CONCAT(vio, _on) (void) {              \
-                                             LL_GPIO_ResetOutputPin(LL_VIO(vio));        \
+#define __VIO_MAKE_OUTPUT_API_TOGGLE(vio)  static __INLINE void __CONCAT(vio, _toggle) (void) {          \
+                                             LL_GPIO_TogglePin(LL_VIO(vio));                             \
+                                           }                                                            
+                
+#define __VIO_MAKE_OUTPUT_API_UP(vio)      static __INLINE void __CONCAT(vio, _off) (void) {             \
+                                             LL_GPIO_SetOutputPin(LL_VIO(vio));                          \
+                                           }                                                             \
+                                           static __INLINE void __CONCAT(vio, _on) (void) {              \
+                                             LL_GPIO_ResetOutputPin(LL_VIO(vio));                        \
                                            }     
     
-#define __VIO_MAKE_OUTPUT_API_DOWN(vio)    void __CONCAT(vio, _off) (void) {             \
-                                             LL_GPIO_ResetOutputPin(LL_VIO(vio));        \
-                                           }                                             \
-                                           void __CONCAT(vio, _on) (void) {              \
-                                             LL_GPIO_SetOutputPin(LL_VIO(vio));          \
+#define __VIO_MAKE_OUTPUT_API_DOWN(vio)    static __INLINE void __CONCAT(vio, _off) (void) {             \
+                                             LL_GPIO_ResetOutputPin(LL_VIO(vio));                        \
+                                           }                                                             \
+                                           static __INLINE void __CONCAT(vio, _on) (void) {              \
+                                             LL_GPIO_SetOutputPin(LL_VIO(vio));                          \
                                            }     
     
-#define __VIO_MAKE_INPUT_API_UP(vio)       bool __CONCAT(vio, _isEnabled) (void) {       \
-                                             return LL_GPIO_IsInputPinSet(LL_VIO(vio));  \
+#define __VIO_MAKE_INPUT_API_UP(vio)       static __INLINE bool __CONCAT(vio, _isEnabled) (void) {       \
+                                             return LL_GPIO_IsInputPinSet(LL_VIO(vio));                  \
                                            }                                             
 
-#define __VIO_MAKE_INPUT_API_DOWN(vio)     bool __CONCAT(vio, _isEnabled) (void) {       \
-                                             return !LL_GPIO_IsInputPinSet(LL_VIO(vio)); \
+#define __VIO_MAKE_INPUT_API_DOWN(vio)     static __INLINE bool __CONCAT(vio, _isEnabled) (void) {       \
+                                             return !LL_GPIO_IsInputPinSet(LL_VIO(vio));                 \
                                            }                                                                                             
                                                                                            
-#define __VIO_INIT(vio)                    bool __CONCAT(vio, _init) (void) {            \
-                                             return vio_init(&vio, true);                \
+#define __VIO_INIT(vio)                    static __INLINE bool __CONCAT(vio, _init) (void) {            \
+                                             return vio_init(&vio, true);                                \
                                            }                                                                                           
                                            
 /* INIT */
