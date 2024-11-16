@@ -74,15 +74,7 @@ bool  vio_init (const vio_t* const PVIO, bool lock);
  * @endcode
  */                   
 #define VIO_C(params)    __VIO_C(params)
-#define __VIO_C(name, _port, _pin, _mode, _af, _speed, _pull)                                             \
-                                           const vio_t name = {                                           \
-                                             .port   = PORT(_port)  ,                                     \
-                                             .pin    = PIN(_pin)    ,                                     \
-                                             .mode   = MODE(_mode)  ,                                     \
-                                             .af     = AF(_af)      ,                                     \
-                                             .speed  = SPEED(_speed),                                     \
-                                             .pull   = PULL(_pull)                                        \
-                                           };                                                             
+                                                     
                                            
 /**
  * @brief Declares external references for a virtual IO (VIO) structure and its functions.
@@ -103,11 +95,7 @@ bool  vio_init (const vio_t* const PVIO, bool lock);
  * @endcode
  */     
 #define VIO_H(params)    __VIO_H(params)
-#define __VIO_H(name, _port, _pin, _mode, _af, _speed, _pull)                                             \
-                                           extern const vio_t name;                                       \
-                                           VIO_INIT(name);                                                \
-                                           CONCAT(CONCAT(CONCAT(VIO_MAKE_, _mode), _API_), _pull)(name) 
-                                           
+
                                                     
 #ifdef __cplusplus
   };
