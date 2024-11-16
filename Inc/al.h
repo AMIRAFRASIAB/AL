@@ -50,7 +50,29 @@ void  al_doTheJob (void);
 void  al_tickIncrement (void);
 u32_t al_getTick (void);
 bool  vio_init (const vio_t* const PVIO, bool lock);
-                                                    
+/**
+ * @brief Defines and initializes a virtual IO (VIO) structure with GPIO settings.
+ * 
+ * This macro creates a `vio_t` structure for a GPIO pin and generates functions for
+ * controlling it (e.g., `name_on`, `name_off`, `name_toggle`). It configures the pin's 
+ * port, mode, alternate function, speed, and pull-up/down resistors.
+ * 
+ * @param name    Name for the VIO structure and associated functions (e.g., `name_init`).
+ * @param _port   GPIO port (e.g., A, B, C).
+ * @param _pin    GPIO pin number (e.g., 0, 1, 2).
+ * @param _mode   GPIO mode (INPUT, OUTPUT, ALTERNATE, ANALOG).
+ * @param _af     Alternate function for the pin (0 if unused).
+ * @param _speed  GPIO speed configuration (LOW, MEDIUM, HIGH).
+ * @param _pull   Pull-up or pull-down resistor configuration (UP, DOWN, NO).
+ * 
+ * @details Declares and initializes the VIO structure, generating API functions 
+ * based on the mode and pull configuration.
+ * 
+ * Example:
+ * @code
+ * VIO_C(led1, A, 5, OUTPUT, 0, HIGH, PULLUP);
+ * @endcode
+ */                   
 #define VIO_C(name, _port, _pin, _mode, _af, _speed, _pull)                                               \
                                            const vio_t name = {                                           \
                                              .port   = PORT(_port)  ,                                     \
@@ -62,7 +84,24 @@ bool  vio_init (const vio_t* const PVIO, bool lock);
                                            };                                                             \
                                            VIO_INIT(name)                                                 \
                                            CONCAT(CONCAT(CONCAT(VIO_MAKE_, _mode), _API_), _pull)(name) 
-                                                     
+/**
+ * @brief Declares external references for a virtual IO (VIO) structure and its functions.
+ * 
+ * This macro declares a VIO structure and associated functions for GPIO control 
+ * (e.g., `name_on`, `name_off`, `name_toggle`), typically used in header files to link 
+ * to a VIO defined in another source file.
+ * 
+ * @param name Name of the VIO structure and its functions (e.g., `name_init`).
+ * 
+ * Example:
+ * @code
+ * // In header file (.h)
+ * VIO_H(led1);
+ * 
+ * // In source file (.c)
+ * VIO_C(led1, A, 5, OUTPUT, 0, HIGH, UP);
+ * @endcode
+ */                                   
 #define VIO_H(name)                        extern const vio_t name;                                       \
                                            bool CONCAT(name, _init) (void);                               \
                                            bool CONCAT(name, _isEnabled) (void);                          \
