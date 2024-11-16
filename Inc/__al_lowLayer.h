@@ -48,11 +48,11 @@
                                            }     
     
 #define __VIO_MAKE_INPUT_API_UP(vio)       static __INLINE bool __CONCAT(vio, _isEnabled) (void) {       \
-                                             return LL_GPIO_IsInputPinSet(LL_VIO(vio));                  \
+                                             return !LL_GPIO_IsInputPinSet(LL_VIO(vio));                 \
                                            }                                             
 
 #define __VIO_MAKE_INPUT_API_DOWN(vio)     static __INLINE bool __CONCAT(vio, _isEnabled) (void) {       \
-                                             return !LL_GPIO_IsInputPinSet(LL_VIO(vio));                 \
+                                             return LL_GPIO_IsInputPinSet(LL_VIO(vio));                  \
                                            }                                                                                             
                                                                                            
 #define __VIO_INIT(vio)                    static __INLINE bool __CONCAT(vio, _init) (void) {            \
