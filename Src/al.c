@@ -244,3 +244,6 @@ void al_doTheJob (void) {
     callPtr++;
   }
 }
+__INLINE void f (void) {
+  __NOP();
+}

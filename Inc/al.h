@@ -16,6 +16,7 @@
  */
 #define STM32Fx             f4
 
+
 /**
  * @def AL_BUFFER_SIZE
  * @brief Defines the size of the tick buffer.
@@ -24,29 +25,14 @@
  */
 #define AL_BUFFER_SIZE      5
 
+#if AL_BUFFER_SIZE == 0
+  #error "AL_BUFFER_SIZE Can't Be Zero"
+#endif
 
-
-/**
- * @brief Do not modify the following macros.
- * 
- * @warning Modifying these macros may break the library functionality.
- * These macros handle token concatenation and stringization for automatic 
- * inclusion of STM32 series-specific headers.
- */
-#define __CONCAT(x, y)    x ## y
-#define CONCAT(x, y)    __CONCAT(x, y)
-#define __TO_STRING(x)  #x
-#define TO_STRING(x)    __TO_STRING(x)
-
-#include TO_STRING(CONCAT(CONCAT(stm32, STM32Fx), xx_ll_gpio.h))
-#include TO_STRING(CONCAT(CONCAT(stm32, STM32Fx), xx_ll_bus.h))
-#include <stdint.h>
-#include <stdbool.h>
-
-
-
+#include "__al_lowLayer.h"
 
 typedef void (*al_void_Fn) (void);
+typedef uint32_t u32_t;
 
 typedef struct {
   GPIO_TypeDef*  port;
@@ -58,23 +44,32 @@ typedef struct {
   uint32_t       outType;
 } vio_t;
 
-#define  NO            LL_GPIO_AF_0,
-#define  PIN(pin)      LL_GPIO_PIN_##pin,
-#define  PORT(port)    GPIO##port,
-#define  AF(af)        LL_GPIO_AF_##af,
-#define  MODE(mode)    LL_GPIO_MODE_##mode,
-#define  SPEED(speed)  LL_GPIO_SPEED_FREQ_##speed,
-#define  TYPE(type)    LL_GPIO_OUTPUT_##type,
-#define  PULL(pull)    LL_GPIO_PULL_##pull,
-#define  LL_VIO(vio)   vio.port, vio.pin
-
-
-bool al_createJob (al_void_Fn const callback, uint32_t tick_ms);
-void al_doTheJob (void);
-void al_tickIncrement (void);
-uint32_t al_getTick (void);
-bool vio_init (const vio_t* const PVIO, bool lock);
-
+                                           
+bool  al_createJob (al_void_Fn const callback, uint32_t tick_ms);
+void  al_doTheJob (void);
+void  al_tickIncrement (void);
+u32_t al_getTick (void);
+bool  vio_init (const vio_t* const PVIO, bool lock);
+                                                    
+#define VIO_C(name, _port, _pin, _mode, _af, _speed, _pull)                                               \
+                                           const vio_t name = {                                           \
+                                             .port   = PORT(_port)  ,                                     \
+                                             .pin    = PIN(_pin)    ,                                     \
+                                             .mode   = MODE(_mode)  ,                                     \
+                                             .af     = AF(_af)      ,                                     \
+                                             .speed  = SPEED(_speed),                                     \
+                                             .pull   = PULL(_pull)                                        \
+                                           };                                                             \
+                                           VIO_INIT(name)                                                 \
+                                           CONCAT(CONCAT(CONCAT(VIO_MAKE_, _mode), _API_), _pull)(name) 
+                                                     
+#define VIO_H(name)                        extern const vio_t name;                                       \
+                                           bool CONCAT(name, _init) (void);                               \
+                                           bool CONCAT(name, _isEnabled) (void);                          \
+                                           void CONCAT(name, _on) (void);                                 \
+                                           void CONCAT(name, _off) (void);                                \
+                                           void CONCAT(name, _toggle) (void);
+                                                    
 #ifdef __cplusplus
   };
 #endif //__cplusplus
