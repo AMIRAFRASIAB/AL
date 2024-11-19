@@ -14,7 +14,7 @@
  * @details Sets the target STM32 series (e.g., `f4`) for the library, 
  * which determines the corresponding header file inclusion.
  */
-#define STM32Fx             f4
+#define STM32Fx             g0
 
 
 /**
@@ -23,7 +23,7 @@
  * @details Specifies the number of tick jobs that can be managed concurrently.
  * Adjust based on system requirements (e.g., `5` jobs).
  */
-#define AL_BUFFER_SIZE      5
+#define AL_BUFFER_SIZE      1
 
 #if AL_BUFFER_SIZE == 0
   #error "AL_BUFFER_SIZE Can't Be Zero"

@@ -54,47 +54,47 @@ static void __vio_clockEnable (const vio_t* const PVIO) {
   switch ((uintptr_t)(PVIO->port)) {
     #if defined(GPIOA)
     case (uintptr_t)GPIOA:
-      LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOA);
+      LL_IOP_GRP1_EnableClock(LL_IOP_GRP1_PERIPH_GPIOA);
       break;
     #endif
     #if defined(GPIOB)
     case (uintptr_t)GPIOB:
-      LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOB);
+      LL_IOP_GRP1_EnableClock(LL_IOP_GRP1_PERIPH_GPIOB);
       break;
     #endif
     #if defined(GPIOC)
     case (uintptr_t)GPIOC:
-      LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOC);
+      LL_IOP_GRP1_EnableClock(LL_IOP_GRP1_PERIPH_GPIOC);
       break;
     #endif
     #if defined(GPIOD)
     case (uintptr_t)GPIOD:
-      LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOD);
+      LL_IOP_GRP1_EnableClock(LL_IOP_GRP1_PERIPH_GPIOD);
       break;
     #endif
     #if defined(GPIOE)
     case (uintptr_t)GPIOE:
-      LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOE);
+      LL_IOP_GRP1_EnableClock(LL_IOP_GRP1_PERIPH_GPIOE);
       break;
     #endif
     #if defined(GPIOF)
     case (uintptr_t)GPIOF:
-      LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOF);
+      LL_IOP_GRP1_EnableClock(LL_IOP_GRP1_PERIPH_GPIOF);
       break;
     #endif
     #if defined(GPIOG)
     case (uintptr_t)GPIOG:
-      LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOG);
+      LL_IOP_GRP1_EnableClock(LL_IOP_GRP1_PERIPH_GPIOG);
       break;
     #endif
     #if defined(GPIOH)
     case (uintptr_t)GPIOH:
-      LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOH);
+      LL_IOP_GRP1_EnableClock(LL_IOP_GRP1_PERIPH_GPIOH);
       break;
     #endif
     #if defined(GPIOI)
     case (uintptr_t)GPIOI:
-      LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOI);
+      LL_IOP_GRP1_EnableClock(LL_IOP_GRP1_PERIPH_GPIOI);
       break;
     #endif
   };
