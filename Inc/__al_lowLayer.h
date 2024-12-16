@@ -23,6 +23,7 @@
 #define  TYPE(type)    __CONCAT(LL_GPIO_OUTPUT_, type)
 #define  LL_VIO(vio)   vio.port, vio.pin
 
+#include TO_STRING(CONCAT(CONCAT(stm32, STM32Fx), xx_hal_rcc.h))
 #include TO_STRING(CONCAT(CONCAT(stm32, STM32Fx), xx_ll_gpio.h))
 #include TO_STRING(CONCAT(CONCAT(stm32, STM32Fx), xx_ll_bus.h))
 #include <stdint.h>
