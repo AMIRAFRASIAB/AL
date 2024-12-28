@@ -79,18 +79,19 @@
 #define VIO_MAKE_ALTERNATE_API_DOWN(...)
 #define VIO_MAKE_ALTERNATE_API_NO(...)
 
-#define __VIO_C(name, _port, _pin, _mode, _af, _speed, _pull)                                             \
-                                           const vio_t name = {                                           \
-                                             .port   = PORT(_port)  ,                                     \
-                                             .pin    = PIN(_pin)    ,                                     \
-                                             .mode   = MODE(_mode)  ,                                     \
-                                             .af     = AF(_af)      ,                                     \
-                                             .speed  = SPEED(_speed),                                     \
-                                             .pull   = PULL(_pull)                                        \
+#define __VIO_C(name, _port, _pin, _mode, _af, _speed, _pull, _outType)                                      \
+                                           const vio_t name = {                                              \
+                                             .port    = PORT(_port)    ,                                     \
+                                             .pin     = PIN(_pin)      ,                                     \
+                                             .mode    = MODE(_mode)    ,                                     \
+                                             .af      = AF(_af)        ,                                     \
+                                             .speed   = SPEED(_speed)  ,                                     \
+                                             .pull    = PULL(_pull)    ,                                     \
+                                             .outType = TYPE(_outType)                                       \
                                            };                                                            
 
 
-#define __VIO_H(name, _port, _pin, _mode, _af, _speed, _pull)                                             \
+#define __VIO_H(name, _port, _pin, _mode, _af, _speed, _pull, _outType)                                   \
                                            extern const vio_t name;                                       \
                                            VIO_INIT(name);                                                \
                                            CONCAT(CONCAT(CONCAT(VIO_MAKE_, _mode), _API_), _pull)(name) 

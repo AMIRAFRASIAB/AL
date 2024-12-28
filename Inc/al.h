@@ -70,7 +70,7 @@ bool  vio_init (const vio_t* const PVIO, bool lock);
  * 
  * Example:
  * @code
- * VIO_C(led1, A, 5, OUTPUT, 0, HIGH, PULLUP);
+ * 
  * @endcode
  */                   
 #define VIO_C(params)    __VIO_C(params)
@@ -88,10 +88,11 @@ bool  vio_init (const vio_t* const PVIO, bool lock);
  * Example:
  * @code
  * // In header file (.h)
- * VIO_H(led1);
+ *  #define LED1_PIN    led1, A, 5, OUTPUT, 0, HIGH, UP, PUSHPULL
+ * VIO_H(LED1_PIN);
  * 
  * // In source file (.c)
- * VIO_C(led1, A, 5, OUTPUT, 0, HIGH, UP);
+ * VIO_C(LED1_PIN);
  * @endcode
  */     
 #define VIO_H(params)    __VIO_H(params)
