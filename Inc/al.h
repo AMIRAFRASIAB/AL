@@ -14,7 +14,7 @@
  * @details Sets the target STM32 series (e.g., `f4`) for the library, 
  * which determines the corresponding header file inclusion.
  */
-#define STM32Fx             f4
+#define STM32Fx             f0
 
 
 /**
