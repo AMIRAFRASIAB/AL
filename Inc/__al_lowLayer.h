@@ -65,7 +65,7 @@
 /* INPUT */                                
 #define VIO_MAKE_INPUT_API_UP(vio)         __VIO_MAKE_INPUT_API_UP(vio)
 #define VIO_MAKE_INPUT_API_DOWN(vio)       __VIO_MAKE_INPUT_API_DOWN(vio)
-#define VIO_MAKE_INPUT_API_NO(...)         __VIO_MAKE_INPUT_API_UP(vio)
+#define VIO_MAKE_INPUT_API_NO(vio)         __VIO_MAKE_INPUT_API_UP(vio)
 /* OUTPUT */                               
 #define VIO_MAKE_OUTPUT_API_UP(vio)        __VIO_MAKE_OUTPUT_API_UP(vio)   __VIO_MAKE_OUTPUT_API_TOGGLE(vio)  __VIO_MAKE_INPUT_API_UP(vio)
 #define VIO_MAKE_OUTPUT_API_DOWN(vio)      __VIO_MAKE_OUTPUT_API_DOWN(vio) __VIO_MAKE_OUTPUT_API_TOGGLE(vio)  __VIO_MAKE_INPUT_API_DOWN(vio)
