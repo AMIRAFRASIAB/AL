@@ -59,7 +59,7 @@ For a given name like `led`, these functions are generated:
 Include your macro definitions and the `abstraction_layer.h` header:
 
 ```c
-#include "abstraction_layer.h"
+#include "al.h"
 ```
 
 
