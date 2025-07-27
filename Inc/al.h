@@ -62,7 +62,7 @@
                                           LL_GPIO_SetPinOutputType(PORT(_port), PIN(_pin), TYPE(_type));       \
                                           LL_GPIO_SetPinSpeed(PORT(_port), PIN(_pin), SPEED(_speed));          \
                                           LL_GPIO_SetPinPull(PORT(_port), PIN(_pin), PULL(_pull));             \
-                                          CONCAT(__AF_, _af)(PORT(_port), PIN(_pin), AF(_af));                 \
+                                          CONCAT(__AF_, _pin)(PORT(_port), PIN(_pin), AF(_af));                \
                                         }                                                                      \
                                         static __INLINE uint32_t CONCAT(_name, _getState) (void) {             \
                                           return CONCAT(__GET_INPUT_PIN_PULL_, _pull)(PORT(_port), PIN(_pin)); \
