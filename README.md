@@ -18,6 +18,8 @@ This library provides a **zero-cost abstraction** over STM32 LL GPIO configurati
 In your configuration header file:
 
 ```c
+#include "stm32f4xx_ll_gpio.h"  // F4 in this case
+#include "stm32f4xx_hal_rcc.h"  // F4 in this case
 #define LED  led, A, 13, OUTPUT, 0, LOW, DOWN, PUSH_PULL
 ```
 
@@ -59,7 +61,8 @@ For a given name like `led`, these functions are generated:
 Include your macro definitions and the `abstraction_layer.h` header:
 
 ```c
-#include "al.h"
+#include "abstraction_layer.h"
+
 ```
 
 

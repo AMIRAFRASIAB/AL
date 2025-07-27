@@ -6,7 +6,6 @@
   extern "C"{
 #endif //__cplusplus
 
-#include "al_config.h"
 #include <stdint.h>
 #include <stdbool.h>
 #include "swo.h"
