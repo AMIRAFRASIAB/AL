@@ -19,13 +19,19 @@
 #define  TYPE(type)                     CONCAT(LL_GPIO_OUTPUT_, type)
 
 
-
-#define __SET_OUTPUT_PIN_PULL_DOWN      LL_GPIO_SetOutputPin
+#define LL_GPIO_PULL_0                  LL_GPIO_PULL_NO
+/* PULL UP */
 #define __SET_OUTPUT_PIN_PULL_UP        LL_GPIO_ResetOutputPin
-#define __GET_INPUT_PIN_PULL_DOWN       LL_GPIO_IsInputPinSet
 #define __GET_INPUT_PIN_PULL_UP         !LL_GPIO_IsInputPinSet
-#define __RE_SET_OUTPUT_PIN_PULL_DOWN   LL_GPIO_ResetOutputPin
 #define __RE_SET_OUTPUT_PIN_PULL_UP     LL_GPIO_SetOutputPin
+/* PULL DOWM */
+#define __SET_OUTPUT_PIN_PULL_DOWN      LL_GPIO_SetOutputPin
+#define __GET_INPUT_PIN_PULL_DOWN       LL_GPIO_IsInputPinSet
+#define __RE_SET_OUTPUT_PIN_PULL_DOWN   LL_GPIO_ResetOutputPin
+/* PULL NO */
+#define __SET_OUTPUT_PIN_PULL_0         LL_GPIO_SetOutputPin
+#define __GET_INPUT_PIN_PULL_0          LL_GPIO_IsInputPinSet
+#define __RE_SET_OUTPUT_PIN_PULL_0      LL_GPIO_ResetOutputPin
 
 #define __AF_0                          LL_GPIO_SetAFPin_0_7
 #define __AF_1                          LL_GPIO_SetAFPin_0_7
