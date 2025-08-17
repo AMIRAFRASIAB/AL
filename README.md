@@ -33,8 +33,8 @@ VIO_H(LED);
 
 ```c
 led_init();
-led_enable();
-led_disable();
+led_setPin();
+led_resetPin();
 
 if (led_getState()) {
     // Do something if pin is high
@@ -46,13 +46,13 @@ if (led_getState()) {
 For a given name like `led`, these functions are generated:
 
 - `led_init()` – Initializes the pin with clock, mode, speed, pull, type, AF
-- `led_enable()` – Turns on the output pin (pull-dependent logic)
-- `led_disable()` – Turns off the output pin
+- `led_setPin()` – Turns on the output pin 
+- `led_resetPin()` – Turns off the output pin
 - `led_getState()` – Reads the pin input level
 
 ## ⚠️ Notes
 
-- `_enable()` and `_disable()` logic depends on pull-up/pull-down config.
+- `_setPin()` and `_resetPin()` logic depends on pull-up/pull-down config.
 - Requires STM32 LL drivers (`LL_GPIO_*` functions).
 - All macros and functions are resolved at compile-time.
 
