@@ -8,11 +8,7 @@
 
 #include <stdint.h>
 #include <stdbool.h>
-//#include "swo.h"
-
-#define NO  0
-#define YES 1
-#define CONCAT(a, b)  a ## b
+#include "swo.h"
 
 #define  PORT(port)                     CONCAT(GPIO, port)
 #define  PIN(pin)                       CONCAT(LL_GPIO_PIN_, pin)
@@ -42,30 +38,29 @@
 #define __AF_14                         LL_GPIO_SetAFPin_8_15
 #define __AF_15                         LL_GPIO_SetAFPin_8_15
 
-#ifndef __INLINE
-  #define __INLINE  inline
-#endif  
 
 
-#define __VIO_H(_name, _port, _pin, _mode, _af, _speed, _pull, _type)                                     \
-                                        static __INLINE void CONCAT(_name, _init) (void) {                \
-                                          CONCAT(__HAL_RCC_GPIO, _port, _CLK_ENABLE)();                   \
-                                          LL_GPIO_SetPinMode(PORT(_port), PIN(_pin), MODE(_mode));        \
-                                          LL_GPIO_SetPinOutputType(PORT(_port), PIN(_pin), TYPE(_type));  \
-                                          LL_GPIO_SetPinSpeed(PORT(_port), PIN(_pin), SPEED(_speed));     \
-                                          LL_GPIO_SetPinPull(PORT(_port), PIN(_pin), PULL(_pull));        \
-                                          CONCAT(__AF_, _pin)(PORT(_port), PIN(_pin), AF(_af));           \
-                                        }                                                                 \
-                                        static __INLINE uint32_t CONCAT(_name, _getState) (void) {        \
-                                          return LL_GPIO_IsInputPinSet(PORT(_port), PIN(_pin));           \
-                                        }                                                                 \
-                                        static __INLINE void CONCAT(_name, _setPin) (void) {              \
-                                          LL_GPIO_SetOutputPin(PORT(_port), PIN(_pin));                   \
-                                        }                                                                 \
-                                        static __INLINE void CONCAT(_name, _resetPin) (void) {            \
-                                          LL_GPIO_ResetOutputPin(PORT(_port), PIN(_pin));                 \
+#define __VIO_H(_name, _port, _pin, _mode, _af, _speed, _pull, _type)                                                       \
+                                        __attribute__((always_inline)) static inline void CONCAT(_name, _init) (void) {     \
+                                          CONCAT(__HAL_RCC_GPIO, _port, _CLK_ENABLE)();                                     \
+                                          LL_GPIO_SetPinMode(PORT(_port), PIN(_pin), MODE(_mode));                          \
+                                          LL_GPIO_SetPinOutputType(PORT(_port), PIN(_pin), TYPE(_type));                    \
+                                          LL_GPIO_SetPinSpeed(PORT(_port), PIN(_pin), SPEED(_speed));                       \
+                                          LL_GPIO_SetPinPull(PORT(_port), PIN(_pin), PULL(_pull));                          \
+                                          CONCAT(__AF_, _pin)(PORT(_port), PIN(_pin), AF(_af));                             \
+                                        }                                                                                   \
+                                        __attribute__((always_inline)) static inline uint32_t CONCAT(_name, _read) (void) { \
+                                          return LL_GPIO_IsInputPinSet(PORT(_port), PIN(_pin));                             \
+                                        }                                                                                   \
+                                        __attribute__((always_inline)) static inline void CONCAT(_name, _set) (void) {      \
+                                          LL_GPIO_SetOutputPin(PORT(_port), PIN(_pin));                                     \
+                                        }                                                                                   \
+                                        __attribute__((always_inline)) static inline void CONCAT(_name, _reset) (void) {    \
+                                          LL_GPIO_ResetOutputPin(PORT(_port), PIN(_pin));                                   \
+                                        }                                                                                   \
+                                        __attribute__((always_inline)) static inline void CONCAT(_name, _toggle) (void) {   \
+                                          LL_GPIO_TogglePin(PORT(_port), PIN(_pin));                                        \
                                         }
-
 
 
 
