@@ -48,6 +48,7 @@
                                           LL_GPIO_SetPinSpeed(PORT(_port), PIN(_pin), SPEED(_speed));                       \
                                           LL_GPIO_SetPinPull(PORT(_port), PIN(_pin), PULL(_pull));                          \
                                           CONCAT(__AF_, _pin)(PORT(_port), PIN(_pin), AF(_af));                             \
+                                          LL_GPIO_LockPin(PORT(_port), PIN(_pin));                                          \
                                         }                                                                                   \
                                         __attribute__((always_inline)) static inline uint32_t CONCAT(_name, _read) (void) { \
                                           return LL_GPIO_IsInputPinSet(PORT(_port), PIN(_pin));                             \
