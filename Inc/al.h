@@ -90,7 +90,7 @@
  * - `af`     : Alternate function index (0 to 15)
  * - `speed`  : GPIO speed setting (`LOW`, `MEDIUM`, `HIGH`, `VERY_HIGH`)
  * - `pull`   : Pull-up/down config (`UP` or `DOWN`)
- * - `type`   : Output type (`PUSH_PULL` or `OPEN_DRAIN`)
+ * - `type`   : Output type (`PUSHPULL` or `OPENDRAIN`)
  * 
  * @example
  * ```c
